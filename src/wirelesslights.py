@@ -126,4 +126,12 @@ class WirelessLights(object):
     def getColors(self):            
         return list(COLORDICT.keys())
     
+    def flashColor(self, color, timeS):
+        self.on()
+        self.setColor(color)
+        self.setBrightness(100)
+        time.sleep(timeS)
+        self.off()
+        time.sleep(timeS)
+        
         

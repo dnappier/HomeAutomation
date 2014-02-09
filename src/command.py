@@ -19,4 +19,6 @@ ALL_ON = 'allon'
 LIVINGROOM_ON = 'livingroomon'
 LIVINGROOM_OFF = 'livingroomoff'
 
+TEXTRX = "receivedtext"
+
 WAKEUP = "wakeup"

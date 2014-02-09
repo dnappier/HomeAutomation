@@ -76,6 +76,11 @@ class ActionHandler(object):
             w = WirelessLights(All=True).off()
             del(w)
             
+        if(cmd == command.TEXTRX):
+            Log().log("Received Text")
+            
+            
+            
         if(cmd ==command.WAKEUP):
             Log().log("Wakeup")
             w = WirelessLights(4)
@@ -87,3 +92,13 @@ class ActionHandler(object):
                 time.sleep(.5)
                 w.off()
                 time.sleep(.5)
+                
+    def textMessageAlert(self):
+        for i in range(2):
+            w = WirelessLights(All=True)
+            w.flashColor("Violet", .5)
+            w.flashColor('Lime_Green', .5)
+            w.flashColor('Red', .5)
+            time.sleep(1)
+                
+                
