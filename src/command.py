@@ -18,6 +18,8 @@ ALL_OFF = 'alloff'
 ALL_ON = 'allon'
 LIVINGROOM_ON = 'livingroomon'
 LIVINGROOM_OFF = 'livingroomoff'
+FLASH = "flash"
+STOP_FLASHING = "stopflashing"
 
 TEXTRX = "receivedtext"
 

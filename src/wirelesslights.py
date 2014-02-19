@@ -13,8 +13,7 @@ WHITE = 0x45
 WHITE2 = 0xC5
 WHITEALL = 0x42
 WHITEALL2 = 0xC2
-import socket
-import time
+
 
 COLORDICT = {
          'Violet'        : 0x00,
@@ -35,11 +34,15 @@ COLORDICT = {
          'Lavendar'      : 0xF0
 }
 
+import socket
+import time
+
+
 #
 #  wait for 50ms before consecutive commands
 #
 class WirelessLights(object):
-    
+
     def __init__(self, group=1, All=False):
         self.group = group
         self.packet = []
@@ -53,23 +56,36 @@ class WirelessLights(object):
             self.off = self.OFF
             self.white = self.WHITE
         
-    def ON(self):
+    def ON(self, color='', brightness=0):
         self.packet.append(GROUPBASE + ((self.group - 1)*2) )
         self.packet.append(0x00)
         self.send()
+        if color:
+            time.sleep(.05)
+            self.setColor(color)
+        if brightness > 0:
+            time.sleep(.05)
+            self.setBrightness(brightness)
 
     def OFF(self):
         self.packet.append(GROUPBASE + ((self.group - 1)*2) + 1)
         self.send()
   
-    def onAll(self):
+    def onAll(self, color='', brightness=0):
         self.packet.append(ALLON)
         self.packet.append(0x00)
         self.send()
+        if color:
+            time.sleep(.05)
+            self.setColor(color)
+        if brightness > 0:
+            time.sleep(.05)
+            self.setBrightness(brightness)
         
     def send(self, use2ndByte=False):
         if not use2ndByte:
-            self.packet.append(0x00);
+            self.packet.append(0x00)
+
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.packet.append(PACKETEND)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
