@@ -18,5 +18,5 @@ ALL_OFF = 'alloff'
 ALL_ON = 'allon'
 LIVINGROOM_ON = 'livingroomon'
 LIVINGROOM_OFF = 'livingroomoff'
-
+KILL = 'kill'
 WAKEUP = "wakeup"

@@ -75,6 +75,10 @@ class ActionHandler(object):
             Log().log("All on")
             w = WirelessLights(All=True).off()
             del(w)
+
+        if (cmd == command.KILL):
+            Log().log("Going Down")
+            return True
             
         if(cmd ==command.WAKEUP):
             Log().log("Wakeup")
@@ -87,3 +91,5 @@ class ActionHandler(object):
                 time.sleep(.5)
                 w.off()
                 time.sleep(.5)
+
+        return False
