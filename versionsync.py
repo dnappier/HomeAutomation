@@ -2,6 +2,7 @@ __author__ = 'dougnappier'
 import subprocess
 from multiprocessing import Process, current_process
 from threading import Timer
+import homelog
 import time
 
 class VersionSync(object):
@@ -30,11 +31,14 @@ class VersionSync(object):
             self.__get_update()
 
     def __get_update(self):
-        subprocess.Popen(['git', 'pull', 'origin', '%s:%s'%(self.branch, self.branch)], stdout=subprocess.PIPE).communicate()[0]
         self.spawn_detached(self.__restart_program)
 
     def __restart_program(self):
-        time.sleep(30);
+        print 'restart problem'
+        time.sleep(30)
+        out = subprocess.Popen(['git', 'pull', 'origin', '%s:%s'%(self.branch, self.branch)], stdout=subprocess.PIPE).communicate()[0]
+        homelog.Log().log(out)
+        time.sleep(1)
         subprocess.Popen(['python', 'bootloader.py'], stdout=subprocess.PIPE).communicate()[0]
 
     def spawn_detached(self, callable):
