@@ -7,7 +7,7 @@ CH = ''
 from udpcommandhandler import UDPCommandHandler
 from versionsync import VersionSync
 
-VersionSync("github_sync").start()
+VersionSync("master").start()
 CH = UDPCommandHandler()
 CH.run()
 print 'done'

@@ -4,6 +4,7 @@ from multiprocessing import Process, current_process
 from threading import Timer
 import homelog
 import time
+import os
 
 class VersionSync(object):
     """
@@ -17,12 +18,15 @@ class VersionSync(object):
 
     def __check_latest_version(self):
         origin_sha = subprocess.Popen(['git', 'rev-parse', 'remotes/origin/%s' %self.branch], stdout=subprocess.PIPE).communicate()[0]
+        #test
+        origin_sha = 'dsfa'
         if self.current_ref == origin_sha:
             return True
         else:
             self.__get_update()
             #check update if sucessful
-
+            homelog.Log().log("Sending kill signal")
+            os.system('echo -n "kill" | nc -4u -w1 localhost 8899')
 
     def __update_if_necessary(self):
         if self.__check_latest_version():
@@ -34,15 +38,14 @@ class VersionSync(object):
         self.spawn_detached(self.__restart_program)
 
     def __restart_program(self):
-        print 'restart problem'
-        time.sleep(30)
+        time.sleep(60)
         out = subprocess.Popen(['git', 'pull', 'origin', '%s:%s'%(self.branch, self.branch)], stdout=subprocess.PIPE).communicate()[0]
         homelog.Log().log(out)
         time.sleep(1)
         subprocess.Popen(['python', 'bootloader.py'], stdout=subprocess.PIPE).communicate()[0]
 
     def spawn_detached(self, callable):
-        p = self._spawn_detached(0, callable)
+        p = self.__spawn_detached(0, callable)
         # give the process a moment to set up
         # and then kill the first child to detach
         # the second.
@@ -52,7 +55,6 @@ class VersionSync(object):
     def __spawn_detached(self, count, callable):
         count += 1
         p = current_process()
-        print 'Process #%d: %s (%d)' % (count, p.name, p.pid)
 
         if count < 2:
             name = 'child'
@@ -64,7 +66,7 @@ class VersionSync(object):
             return callable()
 
         # otherwise, spawn another process, passing the counter as well
-        p = Process(name=name, target=self._spawn_detached, args=(count, callable))
+        p = Process(name=name, target=self.__spawn_detached, args=(count, callable))
         p.daemon = False
         p.start()
         return p

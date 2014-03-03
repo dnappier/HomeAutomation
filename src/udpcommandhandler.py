@@ -7,6 +7,7 @@ Created on Jan 11, 2014
 from twisted.internet.protocol import DatagramProtocol
 from twisted.internet import reactor
 from actionhandler import ActionHandler
+from homelog import Log
 
 class UDPCommandHandler(DatagramProtocol):
     def datagramReceived(self, data, (host, port)): 
@@ -18,6 +19,7 @@ class UDPCommandHandler(DatagramProtocol):
             reactor.stop()
 
     def run(self):
-        self.listenPort = reactor.listenUDP(8898, UDPCommandHandler())
+        Log().log("Booting up server")
+        self.listenPort = reactor.listenUDP(8899, UDPCommandHandler())
         reactor.run()
 
