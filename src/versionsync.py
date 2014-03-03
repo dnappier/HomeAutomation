@@ -18,8 +18,6 @@ class VersionSync(object):
 
     def __check_latest_version(self):
         origin_sha = subprocess.Popen(['git', 'rev-parse', 'remotes/origin/%s' %self.branch], stdout=subprocess.PIPE).communicate()[0]
-        #test
-        origin_sha = 'dsfa'
         if self.current_ref == origin_sha:
             return True
         else:
