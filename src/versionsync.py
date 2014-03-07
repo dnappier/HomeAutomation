@@ -30,7 +30,7 @@ class VersionSync(object):
         if self.__check_latest_version():
             Timer(self.duration, self.__update_if_necessary, ()).start()
         else:
-            Homelog.Log().log("Hashes don't match!")
+            homelog.Log().log("Hashes don't match!")
             self.__get_update()
 
     def __get_update(self):
@@ -38,7 +38,7 @@ class VersionSync(object):
 
     def __restart_program(self):
         time.sleep(60)
-        Homelog.Log().log("Pulling update from Github")
+        homelog.Log().log("Pulling update from Github")
         out = subprocess.Popen(['git', 'pull', 'origin', '{0:s}:{1:s}'.format(self.branch, self.branch)], stdout=subprocess.PIPE).communicate()[0]
         homelog.Log().log(out)
         time.sleep(1)

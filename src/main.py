@@ -10,5 +10,5 @@ from versionsync import VersionSync
 
 print 'test'
 VersionSync("github_sync").start()
-#system(r'python server/udpserver.py &')
+system(r'python server/udpserver.py &')
 print 'done'
