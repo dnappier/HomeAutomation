@@ -2,7 +2,7 @@ __author__ = 'dougnappier'
 import subprocess
 from multiprocessing import Process, current_process
 from threading import Timer
-import homelog
+from server import homelog
 import time
 import os
 

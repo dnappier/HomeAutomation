@@ -4,11 +4,11 @@ Created on Jan 11, 2014
 @author: dougnappier
 '''
 CH = ''
-from udpcommandhandler import UDPCommandHandler
+from os import system
 from versionsync import VersionSync
 
 
-if __name__ == 'main':
-    VersionSync("master").start()
-    UDPCommandHandler().run()
-    print 'done'
+print 'test'
+VersionSync("github_sync").start()
+#system(r'python server/udpserver.py &')
+print 'done'
