@@ -7,7 +7,8 @@ CH = ''
 from udpcommandhandler import UDPCommandHandler
 from versionsync import VersionSync
 
-VersionSync("master").start()
-CH = UDPCommandHandler()
-CH.run()
-print 'done'
+
+if __name__ == 'main':
+    VersionSync("master").start()
+    UDPCommandHandler().run()
+    print 'done'
