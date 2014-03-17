@@ -1,0 +1,36 @@
+{
+  "time": [
+    [
+      "9:00",
+      "17:30",
+      "all",
+      "2",
+      "lightsoff"
+    ],
+    [
+      "7:00",
+      "1",
+      "lightson"
+    ],
+    [
+      "6:00",
+      "1",
+      "lightson"
+    ],
+    [
+      "23:59",
+      "6:30",
+      "all",
+      "lightsoff"
+    ]
+  ],
+  "boolean": true,
+  "null": null,
+  "number": 123,
+  "object": {
+    "a": "b",
+    "c": "d",
+    "e": "f"
+  },
+  "string": "Hello World"
+}
