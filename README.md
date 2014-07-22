@@ -10,3 +10,7 @@ Currently these are just received UDP commands from a different device, often a 
 <br>
 <br>
 NEEDS TWISTED TO RECEIVE UDP PACKETS
+
+
+NEEDS Definition of what the json fields are and what values are legal!
+This is you first pull request!
